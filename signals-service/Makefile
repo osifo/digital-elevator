@@ -9,7 +9,7 @@ VERSION=$(shell cat ./VERSION 2>/dev/null || echo 0.0.0)
 SDKVERSION=$(VERSION)
 DOCKER_TAG=latest #$(VERSION)-dev
 
-GOFLAGS=-ldflags "-X github.com/osifo/digital-elevator/signals-servoce.Version=$(VERSION) \
+GOFLAGS=-ldflags "-X github.com/osifo/digital-elevator/signals-service.Version=$(VERSION) \
                   -X github.com/edgexfoundry/device-sdk-go/v3/internal/common.SDKVersion=$(SDKVERSION)" -trimpath -mod=readonly
 
 GOTESTFLAGS?=-race
@@ -27,7 +27,10 @@ core/signals-service:
 	CGO_ENABLED=0  go build $(GOFLAGS) -o $@ ./core
 
 docker:
-	docker build git://github.com/osifo/digital-elevator/signals-service#signals-service-setup
+	docker build \
+		-f Dockerfile \
+		-t elevator-signals-service:latest \
+		.
 
 unittest:
 	go test $(GOTESTFLAGS) -coverprofile=coverage.out ./...

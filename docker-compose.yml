@@ -74,7 +74,7 @@ services:
       EDGEX_SECURITY_SECRET_STORE: "false"
       SERVICE_HOST: elevator-signals-service
     hostname: elevator-signals-service
-    image: github.com/osifo/digital-elevator/signals-service:latest
+    image: elevator-signals-service:latest
     networks:
       edgex-network: null
     ports:
