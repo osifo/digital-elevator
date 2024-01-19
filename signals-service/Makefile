@@ -2,14 +2,14 @@
 
 ARCH=$(shell uname -m)
 
-MICROSERVICES=example/cmd/device-simple/device-simple
+MICROSERVICES=core/signals-service
 .PHONY: $(MICROSERVICES)
 
 VERSION=$(shell cat ./VERSION 2>/dev/null || echo 0.0.0)
 SDKVERSION=$(VERSION)
-DOCKER_TAG=$(VERSION)-dev
+DOCKER_TAG=latest #$(VERSION)-dev
 
-GOFLAGS=-ldflags "-X github.com/edgexfoundry/device-sdk-go/v3.Version=$(VERSION) \
+GOFLAGS=-ldflags "-X github.com/osifo/digital-elevator/signals-servoce.Version=$(VERSION) \
                   -X github.com/edgexfoundry/device-sdk-go/v3/internal/common.SDKVersion=$(SDKVERSION)" -trimpath -mod=readonly
 
 GOTESTFLAGS?=-race
@@ -23,15 +23,13 @@ tidy:
 
 # CGO is enabled by default and cause docker builds to fail due to no gcc,
 # but is required for test with -race, so must disable it for the builds only
-example/cmd/device-simple/device-simple:
-	CGO_ENABLED=0  go build $(GOFLAGS) -o $@ ./example/cmd/device-simple
+core/signals-service:
+	CGO_ENABLED=0  go build $(GOFLAGS) -o $@ ./core
 
 docker:
 	docker build \
-		-f example/cmd/device-simple/Dockerfile \
-		--label "git_sha=$(GIT_SHA)" \
-		-t edgexfoundry/device-simple:$(GIT_SHA) \
-		-t edgexfoundry/device-simple:$(DOCKER_TAG) \
+		-f Dockerfile \
+		-t github.com/osifo/digital-elevator/signals-service:$(DOCKER_TAG) \
 		.
 
 unittest:
