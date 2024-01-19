@@ -27,10 +27,7 @@ core/signals-service:
 	CGO_ENABLED=0  go build $(GOFLAGS) -o $@ ./core
 
 docker:
-	docker build \
-		-f Dockerfile \
-		-t github.com/osifo/digital-elevator/signals-service:$(DOCKER_TAG) \
-		.
+	docker build git://github.com/osifo/digital-elevator/signals-service#signals-service-setup
 
 unittest:
 	go test $(GOTESTFLAGS) -coverprofile=coverage.out ./...

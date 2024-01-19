@@ -36,7 +36,7 @@ RUN ${MAKE}
 
 # Next image - Copy built Go binary into new workspace
 FROM alpine:3.18
-LABEL copyright='Copyright (c) 2023; Outside Labs'
+LABEL copyright='Copyright (c) 2024; Outside Labs'
 
 RUN apk add --update --no-cache
 
@@ -45,7 +45,7 @@ COPY --from=builder /service/Attribution.txt /Attribution.txt
 COPY --from=builder /service/core/res/ /res
 COPY --from=builder /service/core/signals-service /signals-service
 
-EXPOSE 59999
+EXPOSE 59990
 
-ENTRYPOINT ["/siginals-service"]
+ENTRYPOINT ["siginals-service"]
 CMD ["-cp=consul.http://edgex-core-consul:8500", "--registry"]
