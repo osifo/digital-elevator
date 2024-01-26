@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	serviceName string = "device-simple"
+	serviceName string = "signals-service"
 )
 
 func main() {
