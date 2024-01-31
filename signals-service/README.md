@@ -36,5 +36,5 @@ Dynamic Device Discovery is triggered either by internal timer(see `Device/Disco
 
 The following steps show how to trigger discovery on device-simple:
 1. Set `Device/Discovery/Enabled` to true in [configuration file](cmd/device-simple/res/configuration.yaml)
-2. Trigger discovery by sending POST request to DS endpoint: http://edgex-device-simple:59999/api/v2/discovery
+2. Trigger discovery by sending POST request to DS endpoint: http://edgex-device-simple:59990/api/v2/discovery
 3. `Simple-Device02` will be discovered and added to EdgeX.

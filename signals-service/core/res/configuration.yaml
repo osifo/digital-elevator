@@ -8,12 +8,12 @@ Writable:
       ReadCommandsExecuted: true
 Service:
   Host: "localhost"
-  Port: 59999 # Device service are assigned the 599xx range
-  StartupMsg: device simple started
+  Port: 59990 # Device service are assigned the 599xx range
+  StartupMsg: signals service started
 
 MessageBus:
   Optional:
-    ClientId: device-simple
+    ClientId: signals-service
 
 # Example overriding of Common Config settings
 Device:

@@ -1,0 +1,48 @@
+{
+  "apiVersion": "v1",
+  "name": "audio-sensor",
+  "manufacturer": "Coral AI.",
+  "model": "Audio-01",
+  "labels": ["audio"],
+  "description": "Audio sensor device for processing environment sounds.",
+
+  "deviceResources": [
+    {
+      "name": "recordingDuration",
+      "description": "Captures how long the continuous sound input signal lasted for.",
+      "properties": {
+        "valueType": "Int32",
+        "readWrite": "R"
+      }
+    },
+    {
+      "name": "recordingData",
+      "description": "Capturesthe sound inpu.",
+      "properties": {
+        "valueType": "Binary",
+        "mediaType": "audio/wav",
+        "readWrite": "R"
+      }
+    },
+    {
+      "name": "pitchLowerBoundary",
+      "description": "the minimum loundness(db) level for the sound to be deemed as audio input.",
+      "properties":{
+        "valueType": "Int32",
+        "readWrite": "RW"
+      }
+    }
+  ],
+
+  "deviceCommands": [
+    {
+      "name": "recordings",
+      "readWrite": "R",
+      "isHididen": false,
+      "resourceOperations": [
+        {"deviceResource": "recordingDuration"},
+        {"deviceResource": "recordingData"}
+      ]
+    }
+  ]
+}

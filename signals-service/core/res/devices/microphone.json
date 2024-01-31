@@ -1,0 +1,22 @@
+[
+  {
+    "name": "microphone",
+    "profileName": "audio-sensor",
+    "description": "This is the microphone device for audio input",
+    "labels": ["audio"],
+    "adminState": "UNLOCKED",
+    "operatingState": "UP",
+
+    "protocols": {
+      "other": {
+        "Address": "microphone",
+        "Port": "900"
+      }
+    },
+
+    "autoEvents": [
+      {"interval": "10s", "onChange": false, "sourceName": "recordingDuration" },
+      {"interval": "10s", "onChange": false, "sourceName": "recordingData" }
+    ]
+  }
+]
